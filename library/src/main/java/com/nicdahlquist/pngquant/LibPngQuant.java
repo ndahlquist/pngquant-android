@@ -8,7 +8,7 @@ public class LibPngQuant {
         if (inputFile == null) throw new NullPointerException();
         if (!inputFile.exists()) throw new IllegalArgumentException();
         if (outputFile == null) throw new NullPointerException();
-        if (outputFile.exists()) throw new IllegalArgumentException();
+        if (outputFile.length() != 0) throw new IllegalArgumentException();
 
         String inputFilename = inputFile.getAbsolutePath();
         String outputFilename = outputFile.getAbsolutePath();
