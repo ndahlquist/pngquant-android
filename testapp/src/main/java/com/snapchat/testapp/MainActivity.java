@@ -1,8 +1,7 @@
 package com.snapchat.testapp;
 
-import com.nicdahlquist.pngquant.PngQuantizer;
+import com.nicdahlquist.pngquant.LibPngQuant;
 
-import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,8 +22,10 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File("/sdcard/3.png");
-                new PngQuantizer().quantize(file);
+                File inFile = new File("/sdcard/3.png");
+                File outFile = new File("/sdcard/out.png");
+                outFile.delete();
+                new LibPngQuant().pngQuantFile(inFile, outFile);
             }
         });
     }
