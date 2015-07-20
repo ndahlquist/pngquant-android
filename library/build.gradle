@@ -35,6 +35,5 @@ def execute(cmd) {
 
 
 task customNdkBuild << {
-    execute("library/install_ndk.sh")
     execute("library/build_native_libs.sh")
 }
