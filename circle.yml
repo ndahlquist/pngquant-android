@@ -1,5 +1,10 @@
 # This file defines the continuous integration build process to be run at circleci.com.
 
+checkout:
+  post:
+    - git submodule init
+    - git submodule update
+
 dependencies:
   override:
     - ./library/install_ndk.sh
