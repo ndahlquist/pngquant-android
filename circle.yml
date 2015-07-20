@@ -2,7 +2,9 @@
 
 dependencies:
   override:
-    - echo "Skipped."
+    - ./library/install_ndk.sh
+  cache_directories:
+    - ./android-ndk-r10e
 
 test:
   override:
