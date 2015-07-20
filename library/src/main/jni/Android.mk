@@ -48,13 +48,12 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE           := pngquantandroid
-LOCAL_LDLIBS  := \
-              -lz \
-              -llog \
-              -lm
-LOCAL_WHOLE_STATIC_LIBRARIES += libpng libpngquant
+LOCAL_LDLIBS           := -lz \
+                          -llog \
+                          -lm
+LOCAL_STATIC_LIBRARIES += libpng libpngquant
 LOCAL_CFLAGS           := -std=c99
-LOCAL_SRC_FILES        += PngQuantizer.c \
-                       pngquant.c
+LOCAL_SRC_FILES        += native_glue.c \
+                          pngquant.c
 
 include $(BUILD_SHARED_LIBRARY)
