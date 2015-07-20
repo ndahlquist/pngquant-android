@@ -18,10 +18,22 @@ android {
     }
 }
 
+def execute(cmd) {
+    def proc = cmd.execute()
+    proc.waitFor()
 
-task customNdkBuild << {
-    "make -C src/main/".execute()
+    def buffer = new StringBuffer()
+    proc.consumeProcessErrorStream(buffer)
+
+    print proc.text
+    print buffer.toString()
+
+    if (proc.exitValue()) {
+        throw new RuntimeException("Failed to execute command " + cmd)
+    }
 }
 
 
-
+task customNdkBuild << {
+    execute("library/build_native_libs.sh")
+}

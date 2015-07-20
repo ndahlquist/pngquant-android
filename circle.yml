@@ -1,0 +1,17 @@
+# This file defines the continuous integration build process to be run at circleci.com.
+
+checkout:
+  post:
+    - git submodule init
+    - git submodule update
+
+dependencies:
+  override:
+    - ./library/install_ndk.sh
+  cache_directories:
+    - ./android-ndk-r10e
+
+test:
+  override:
+    - ./gradlew -s check
+    - ./gradlew -s assembleRelease
