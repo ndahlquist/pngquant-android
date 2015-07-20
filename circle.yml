@@ -1,0 +1,10 @@
+# This file defines the continuous integration build process to be run at circleci.com.
+
+dependencies:
+  override:
+    - echo "Skipped."
+
+test:
+  override:
+    - ./gradlew check
+    - ./gradlew assembleRelease

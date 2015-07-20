@@ -18,10 +18,6 @@ android {
     }
 }
 
-
 task customNdkBuild << {
     "make -C src/main/".execute()
 }
-
-
-
