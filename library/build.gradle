@@ -20,13 +20,13 @@ android {
 
 def execute(cmd) {
     def proc = cmd.execute()
+    proc.waitFor()
 
-    proc.in.eachLine {line ->
-        println line
-    }
-    proc.err.eachLine {line ->
-        println line
-    }
+    def buffer = new StringBuffer()
+    proc.consumeProcessErrorStream(buffer)
+
+    print proc.text
+    print buffer.toString()
 
     if (proc.exitValue()) {
         throw new RuntimeException("Failed to execute command " + cmd)
