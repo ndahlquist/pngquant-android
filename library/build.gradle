@@ -18,6 +18,23 @@ android {
     }
 }
 
+def execute(cmd) {
+    def proc = cmd.execute()
+
+    proc.in.eachLine {line ->
+        println line
+    }
+    proc.err.eachLine {line ->
+        println line
+    }
+
+    if (proc.exitValue()) {
+        throw new RuntimeException("Failed to execute command " + cmd)
+    }
+}
+
+
 task customNdkBuild << {
-    "make -C src/main/".execute()
+    execute("library/install_ndk.sh")
+    execute("library/build_native_libs.sh")
 }
