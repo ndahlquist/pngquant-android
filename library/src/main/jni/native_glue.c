@@ -17,19 +17,19 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void * reserved) {
     return JNI_VERSION_1_6;
 }
 
-JNIEXPORT jint JNICALL Java_com_nicdahlquist_pngquant_PngQuantizer_nativeInitialize(JNIEnv * env, jobject obj, jstring jFilename) {
-    LOGI("nativeInitialize3()");
-
-    const char* filename = (*env)->GetStringUTFChars(env,jFilename, 0);
+JNIEXPORT jboolean JNICALL Java_com_nicdahlquist_pngquant_LibPngQuant_nativePngQuantFile(JNIEnv * env, jobject obj, jstring jInFilename, jstring jOutFilename) {
+    const char * inFilename = (*env)->GetStringUTFChars(env, jInFilename, 0);
+    const char * outFilename = (*env)->GetStringUTFChars(env, jOutFilename, 0);
 
     struct pngquant_options options = {
         .floyd = 1.f, // floyd-steinberg dithering
     };
     options.liq = liq_attr_create();
     options.verbose = true;
-    pngquant_file(filename, "/sdcard/out.png", &options);
+    pngquant_file(inFilename, outFilename, &options);
 
-    (*env)->ReleaseStringUTFChars(env, jFilename, filename);
+    (*env)->ReleaseStringUTFChars(env, jInFilename, inFilename);
+    (*env)->ReleaseStringUTFChars(env, jOutFilename, outFilename);
 
-    LOGI("leave nativeInitialize3()");
+    return true;
 }
