@@ -52,10 +52,10 @@ install {
         pom {
             project {
                 packaging 'aar'
-                
+
                 name 'Pngquant with basic Java bindings for Android.'
                 url siteUrl
-                
+
                 licenses {
                     license {
                         name 'BSD Simplified'
