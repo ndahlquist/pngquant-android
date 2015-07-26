@@ -7,7 +7,7 @@ checkout:
 
 dependencies:
   override:
-    - ./library/install_ndk.sh
+    - ./pngquant-android/install_ndk.sh
   cache_directories:
     - ./android-ndk-r10e
 
