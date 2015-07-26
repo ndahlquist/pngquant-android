@@ -35,5 +35,5 @@ def execute(cmd) {
 
 
 task customNdkBuild << {
-    execute("library/build_native_libs.sh")
+    execute("pngquant-android/build_native_libs.sh")
 }
