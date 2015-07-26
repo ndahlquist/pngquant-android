@@ -1,6 +1,6 @@
-[submodule "library/src/main/jni/pngquant"]
-	path = library/src/main/jni/pngquant
+[submodule "pngquant-android/src/main/jni/pngquant"]
+	path = pngquant-android/src/main/jni/pngquant
 	url = https://github.com/pornel/pngquant.git
-[submodule "library/src/main/jni/libpng-android"]
-	path = library/src/main/jni/libpng-android
+[submodule "pngquant-android/src/main/jni/libpng-android"]
+	path = pngquant-android/src/main/jni/libpng-android
 	url = https://github.com/julienr/libpng-android.git

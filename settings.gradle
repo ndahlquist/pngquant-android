@@ -1,1 +1,1 @@
-include ':library', ':testapp'
+include ':pngquant-android', ':testapp'
