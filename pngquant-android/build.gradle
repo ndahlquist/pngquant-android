@@ -18,22 +18,15 @@ android {
     }
 }
 
-def execute(cmd) {
-    def proc = cmd.execute()
-    proc.waitFor()
-
-    def buffer = new StringBuffer()
-    proc.consumeProcessErrorStream(buffer)
-
-    print proc.text
-    print buffer.toString()
-
-    if (proc.exitValue()) {
-        throw new RuntimeException("Failed to execute command " + cmd)
-    }
+task customNdkBuild(type: Exec) {
+    description 'Build our native code.'
+    workingDir '.'
+    commandLine './build_native_libs.sh'
+    dependsOn 'installNdk'
 }
 
-
-task customNdkBuild << {
-    execute("pngquant-android/build_native_libs.sh")
+task installNdk(type: Exec) {
+    description 'Creates a local install of the Android Native Development Kit'
+    workingDir '.'
+    commandLine './install_ndk.sh'
 }
