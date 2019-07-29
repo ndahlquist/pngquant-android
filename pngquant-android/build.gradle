@@ -1,9 +1,8 @@
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7

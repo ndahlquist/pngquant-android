@@ -1,14 +1,27 @@
 buildscript {
     repositories {
         jcenter()
+        google()
+
     }
 
     dependencies {
-        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:3.4.2'
     }
 }
 
-repositories {
-    jcenter()
+allprojects {
+
+    buildscript {
+        repositories {
+            jcenter()
+            google()
+        }
+    }
+
+    repositories {
+        jcenter()
+        google()
+    }
+
 }

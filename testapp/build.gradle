@@ -1,9 +1,8 @@
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -13,9 +12,9 @@ android {
     defaultConfig {
         applicationId "com.nicdahlquist.pngquant"
         minSdkVersion 18
-        targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 28
+        versionCode 2
+        versionName "1.1"
     }
 
     buildTypes {
@@ -27,5 +26,5 @@ android {
 }
 
 dependencies {
-    compile(project(':pngquant-android'))
+    implementation(project(':pngquant-android'))
 }
