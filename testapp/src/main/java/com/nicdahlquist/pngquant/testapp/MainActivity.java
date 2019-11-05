@@ -1,14 +1,14 @@
 package com.nicdahlquist.pngquant.testapp;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+import java.io.File;
+import java.util.concurrent.CompletableFuture;
 
-    private final PngQuantTest mPngQuantTest = new PngQuantTest();
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,24 +17,15 @@ public class MainActivity extends Activity {
 
         final TextView textView = findViewById(R.id.textView);
 
+        File file = PngUtils.createTestPngFile(this);
+
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(v -> {
             textView.setText("Processing...");
 
-            new AsyncTask<Void, Void, Long>() {
-                @Override
-                protected Long doInBackground(Void... params) {
-                    long startMillis = System.currentTimeMillis();
-                    mPngQuantTest.testPngQuant(MainActivity.this);
-                    long endMillis = System.currentTimeMillis();
-                    return endMillis - startMillis;
-                }
-
-                @Override
-                protected void onPostExecute(Long millis) {
-                    textView.setText("Processing took " + millis + " millis.");
-                }
-            }.execute();
+            CompletableFuture<Long> future = new CompletableFuture<>();
+            new PngQuantTask(this, file, future).execute();
+            future.thenAccept(l -> textView.setText("Processing completed in " + l + " millis"));
         });
     }
 }
