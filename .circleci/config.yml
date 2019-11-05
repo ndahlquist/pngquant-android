@@ -1,0 +1,21 @@
+version: 2
+jobs:
+
+  build:
+    docker:
+      - image: circleci/android:api-28
+
+    steps:
+      - checkout
+      - run: git submodule init; git submodule update
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pngquant-android/build.gradle" }}
+
+      - run: ./gradlew -s check assembleRelease
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "pngquant-android/build.gradle" }}
