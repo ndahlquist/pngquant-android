@@ -11,6 +11,10 @@ android {
 
     // Disable the built-in NDK task (this is too rigid for our purposes).
     sourceSets.main.jni.srcDirs = []
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 28
+    }
 
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn customNdkBuild
