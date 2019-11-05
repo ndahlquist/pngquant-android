@@ -4,17 +4,19 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
 
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 28
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
     // Disable the built-in NDK task (this is too rigid for our purposes).
+    // TODO: This was written in 2017. It's likely the modern build system would be sufficient.
     sourceSets.main.jni.srcDirs = []
-    defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 28
-    }
 
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn customNdkBuild
