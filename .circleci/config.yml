@@ -13,7 +13,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "pngquant-android/build.gradle" }}
 
-      - run: ./gradlew -s check assembleRelease
+      - run: ./gradlew -s assembleRelease
 
       - save_cache:
           paths:
