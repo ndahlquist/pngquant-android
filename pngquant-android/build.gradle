@@ -13,24 +13,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    // Disable the built-in NDK task (this is too rigid for our purposes).
-    // TODO: This was written in 2017. It's likely the modern build system would be sufficient.
-    sourceSets.main.jni.srcDirs = []
-
-    tasks.withType(JavaCompile) {
-        compileTask -> compileTask.dependsOn customNdkBuild
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+        }
     }
-}
-
-task customNdkBuild(type: Exec) {
-    description 'Build our native code.'
-    workingDir '.'
-    commandLine './build_native_libs.sh'
-    dependsOn 'installNdk'
-}
-
-task installNdk(type: Exec) {
-    description 'Creates a local install of the Android Native Development Kit'
-    workingDir '.'
-    commandLine './install_ndk.sh'
 }
