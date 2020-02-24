@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-
-# build application's shared lib
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -DANDROID_ARM_NEON=TRUE -DCV_CPU_HAS_SUPPORT_NEON")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPNG_ARM_NEON_OPT=0")
 
 add_library(pngquant-android SHARED
 
@@ -34,12 +32,18 @@ add_library(pngquant-android SHARED
      pngquant.c
     )
 
-#include_directories(multiview
+include_directories(pngquant-android
+        libpng-android/jni/
+        pngquant/
+        )
 #            ../../../../lib/src/
 #            ../../../../lib/external/
 #            ../../../../lib/external/opencv2/contrib/ximgproc/include)
 
-#target_link_libraries(multiview
+target_link_libraries(pngquant-android
+        log
+        z
+)
 #                      android
 #                      jnigraphics
 #                      ${OpenCV_LIBS}
