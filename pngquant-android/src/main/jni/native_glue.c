@@ -21,7 +21,7 @@ static void log_callback(const liq_attr * attr, const char * msg, void * user_in
     LOGI("%s" ,msg);
 }
 
-JNIEXPORT jboolean JNICALL Java_com_nicdahlquist_pngquant_LibPngQuant_nativePngQuantFile(JNIEnv * env, jobject obj, jstring jInFilename, jstring jOutFilename) {
+JNIEXPORT jboolean JNICALL Java_com_nicdahlquist_pngquant_LibPngQuant_nativePngQuantFile(JNIEnv * env, jobject obj, jstring jInFilename, jstring jOutFilename, int jMinQuality, int jMaxQuality, int jSpeed){
     const char * inFilename = (*env)->GetStringUTFChars(env, jInFilename, 0);
     const char * outFilename = (*env)->GetStringUTFChars(env, jOutFilename, 0);
 
@@ -31,6 +31,8 @@ JNIEXPORT jboolean JNICALL Java_com_nicdahlquist_pngquant_LibPngQuant_nativePngQ
     options.liq = liq_attr_create();
 
     options.verbose = true;
+    liq_set_quality(options.liq, jMinQuality, jMaxQuality);
+    liq_set_speed(options.liq, jSpeed);
     liq_set_log_callback(options.liq, log_callback, NULL);
     options.log_callback = log_callback;
 
