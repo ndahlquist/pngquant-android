@@ -1,3 +1,4 @@
+
 ## pngquant-android
 [![Circle CI](https://circleci.com/gh/ndahlquist/pngquant-android.svg?style=svg)](https://circleci.com/gh/ndahlquist/pngquant-android)
 [![Download](https://api.bintray.com/packages/ndahlquist/maven/pngquant-android/images/download.svg) ](https://bintray.com/ndahlquist/maven/pngquant-android/_latestVersion)
@@ -15,10 +16,21 @@ dependencies {
 ```
 
 In your Android app:
+**Optimizing the image with default settings:** 
 ```java
 File inputPngFile = getYourPng();
 File outputPngFile = getOutputFile();
 new LibPngQuant().pngQuantFile(inputFile, outputFile);
+```
+**Alternative commands with more options:**
+```java
+new LibPngQuant().pngQuantFile(inputFile, outputFile, minQuality, maxQuality);
+```
+```java
+new LibPngQuant().pngQuantFile(inputFile, outputFile, minQuality, maxQuality, speed);
+```
+```java
+new LibPngQuant().pngQuantFile(inputFile, outputFile, minQuality, maxQuality, speed, floydDitherAmount);
 ```
 
 ### Building
